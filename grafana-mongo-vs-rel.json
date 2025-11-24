@@ -1,0 +1,136 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "id": null,
+  "title": "Mongo vs Relational – BarChart Dashboard",
+  "tags": ["k6", "mongo", "rel", "benchmark"],
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "type": "barchart",
+      "title": "WRITE Duration (ms)",
+      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "targets": [
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='write' AND \"db\"='rel'",
+          "rawQuery": true,
+          "refId": "A",
+          "legendFormat": "rel"
+        },
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='write' AND \"db\"='mongo'",
+          "rawQuery": true,
+          "refId": "B",
+          "legendFormat": "mongo"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        }
+      }
+    },
+
+    {
+      "type": "barchart",
+      "title": "FIND1 Duration (ms)",
+      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "targets": [
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='find1' AND \"db\"='rel'",
+          "rawQuery": true,
+          "refId": "A",
+          "legendFormat": "rel"
+        },
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='find1' AND \"db\"='mongo'",
+          "rawQuery": true,
+          "refId": "B",
+          "legendFormat": "mongo"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        }
+      }
+    },
+
+    {
+      "type": "barchart",
+      "title": "UPDATE Duration (ms)",
+      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "targets": [
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='update' AND \"db\"='rel'",
+          "rawQuery": true,
+          "refId": "A",
+          "legendFormat": "rel"
+        },
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='update' AND \"db\"='mongo'",
+          "rawQuery": true,
+          "refId": "B",
+          "legendFormat": "mongo"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        }
+      }
+    },
+
+    {
+      "type": "barchart",
+      "title": "DELETE Duration (ms)",
+      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "targets": [
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='delete' AND \"db\"='rel'",
+          "rawQuery": true,
+          "refId": "A",
+          "legendFormat": "rel"
+        },
+        {
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='delete' AND \"db\"='mongo'",
+          "rawQuery": true,
+          "refId": "B",
+          "legendFormat": "mongo"
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        }
+      }
+    }
+  ],
+  "schemaVersion": 39,
+  "version": 1
+}

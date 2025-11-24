@@ -10,6 +10,12 @@ services:
       MYSQL_DATABASE: ordidb
     ports:
       - "3306:3306"
+    command:
+      - --innodb_buffer_pool_size=1G
+      - --innodb_log_file_size=512M
+      - --innodb_flush_log_at_trx_commit=2
+      - --skip-log-bin
+      - --max_connections=300
     volumes:
       - mysql-data:/var/lib/mysql
 
@@ -25,7 +31,35 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb-k6
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      INFLUXDB_DB: k6
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: admin123
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin123
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana-data:/var/lib/grafana
+
 volumes:
   mysql-data:
   mongo-data:
-
+  influxdb-data:
+  grafana-data:

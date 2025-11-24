@@ -5,10 +5,14 @@ import { connectMongo } from "./config.js";
 import { appointmentRouter } from "./routes/appointmentRoutes.js";
 import { Appointment } from "./mongo/models/appointment.js";
 import { benchmarkRouter } from "./routes/benchmarkRoutes.js";
+import cors from "cors";
+
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
+
 app.use(express.json());
 
 app.use("/benchmark", benchmarkRouter);
