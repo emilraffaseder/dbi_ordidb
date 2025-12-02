@@ -1,3 +1,4 @@
+
 {
   "annotations": {
     "list": [
@@ -26,7 +27,7 @@
     {
       "type": "barchart",
       "title": "WRITE Duration (ms)",
-      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "datasource": { "uid": "ff5tkncb93qwwf", "type": "influxdb" },
       "targets": [
         {
           "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='write' AND \"db\"='rel'",
@@ -53,7 +54,7 @@
     {
       "type": "barchart",
       "title": "FIND1 Duration (ms)",
-      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "datasource": { "uid": "ff5tkncb93qwwf", "type": "influxdb" },
       "targets": [
         {
           "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='find1' AND \"db\"='rel'",
@@ -80,7 +81,7 @@
     {
       "type": "barchart",
       "title": "UPDATE Duration (ms)",
-      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "datasource": { "uid": "ff5tkncb93qwwf", "type": "influxdb" },
       "targets": [
         {
           "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='update' AND \"db\"='rel'",
@@ -107,7 +108,7 @@
     {
       "type": "barchart",
       "title": "DELETE Duration (ms)",
-      "datasource": { "uid": "ff53st0sm8kjkd", "type": "influxdb" },
+      "datasource": { "uid": "ff5tkncb93qwwf", "type": "influxdb" },
       "targets": [
         {
           "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE \"action\"='delete' AND \"db\"='rel'",
